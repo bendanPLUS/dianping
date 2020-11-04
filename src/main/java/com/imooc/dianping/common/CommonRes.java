@@ -1,5 +1,8 @@
 package com.imooc.dianping.common;
 
+import lombok.Data;
+
+@Data
 public class CommonRes {
 
     //表明读经请求的返回处理结果，"success"或"fail"

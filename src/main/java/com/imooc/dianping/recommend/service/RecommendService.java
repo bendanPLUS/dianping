@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  * Created by lsd
  * 2020-03-22 20:42
  */
-@Service
+//@Service
 public class RecommendService {
 
     @Autowired

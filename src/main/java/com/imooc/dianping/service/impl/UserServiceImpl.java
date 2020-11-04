@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 
-@Service
+@Service //包含@Component
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -39,12 +39,14 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserModel register(UserModel registerUser) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+        //用户密码encode 加密
         registerUser.setPassword(encodeByMd5(registerUser.getPassword()));
         registerUser.setCreatedAt(new Date());
         registerUser.setUpdatedAt(new Date());
 
         try{
             userModelMapper.insertSelective(registerUser);
+            //异常 如果插入的iphone已经存在 这抛出异常
         }catch (DuplicateKeyException ex){
             throw new BusinessException(EmBusinessError.REGISTER_DUP_FAIL);
         }
@@ -65,6 +67,7 @@ public class UserServiceImpl implements UserService {
     public Integer countAllUser() {
         return userModelMapper.countAllUser();
     }
+
 
     private String encodeByMd5(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         //确认计算方法MD5

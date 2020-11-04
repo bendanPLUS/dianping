@@ -90,7 +90,8 @@ public class AlsRecallController {
      * @return spark内存表
      */
     private static Dataset<Row> loadBehaviorDataAsDataFrame() {
-        JavaRDD<String> csvFileRDD = spark.read().textFile("file:///E:/SpringBoot项目实战/ElasticSearch+Spark 构建高匹配度搜索服务+千人千面推荐系统/dianpingjava-master/dianpingjava/第五和第六章-基础服务之品类，门店能力建设加搜索推荐/src/main/resources/training_data/behavior.csv").toJavaRDD();
+                                                                       //必须是三个斜杆 不然报错
+        JavaRDD<String> csvFileRDD = spark.read().textFile("file:///Users/moriu/gitHub/dianping/src/main/resources/training_data/behavior.csv").toJavaRDD();
         // csv数据行 转为 RatingMatrix矩阵结构
         JavaRDD<RatingMatrix> ratingMatrixRDD = csvFileRDD.map(new Function<String, RatingMatrix>() {
             @Override
@@ -163,10 +164,10 @@ public class AlsRecallController {
 
     public static void main(String[] args) {
         // 必须设置此环境变量且必须是配置好winutils.exe的hadoop，否则NPE
-        System.setProperty("hadoop.home.dir", "D:/解决winutils.exe问题的Hadoop/hadoop-2.6.0/");
-        spark = SparkSession.builder().master("local").appName("dianping").getOrCreate();
-//        alsRecallTrain();
-        alsRecallPredict();
+        //System.setProperty("hadoop.home.dir", "D:/解决winutils.exe问题的Hadoop/hadoop-2.6.0/");
+        spark = SparkSession.builder().master("local").appName("dianping").getOrCreate();//appName随便取
+        alsRecallTrain();
+        //alsRecallPredict();
     }
 
 }

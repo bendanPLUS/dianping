@@ -16,7 +16,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public CommonRes doError(HttpServletRequest servletRequest, HttpServletResponse httpServletResponse,Exception ex){
-        if(ex instanceof BusinessException){
+        if(ex instanceof    BusinessException){
             return CommonRes.create(((BusinessException)ex).getCommonError(),"fail");
         }else if(ex instanceof NoHandlerFoundException){
             CommonError commonError = new CommonError(EmBusinessError.NO_HANDLER_FOUND);

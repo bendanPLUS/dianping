@@ -1,6 +1,6 @@
 package com.imooc.dianping.common;
 
-import com.imooc.dianping.controller.admin.AdminController;
+
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -32,7 +32,7 @@ public class ControllerAspect {
             return resultObject;
         }
         //判断当前管理员是否登录
-        String email = (String) httpServletRequest.getSession().getAttribute(AdminController.CURRENT_ADMIN_SESSION);
+        String email = (String) httpServletRequest.getSession().getAttribute("currentAdminSession");
         if(email == null){
             if(adminPermission.produceType().equals("text/html")){
                 httpServletResponse.sendRedirect("/admin/admin/loginpage");

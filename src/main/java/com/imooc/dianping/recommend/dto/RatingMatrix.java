@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * 用户-商品打分矩阵结构体(.csv文件)
  */
-@Accessors(chain = true)
+@Accessors(chain = true)//链式调用
 @Data
 public class RatingMatrix implements Serializable {
     private Integer userId;

@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.util.List;
 
-@Controller("/admin/seller")
+@RestController
 @RequestMapping("/admin/seller")
 public class SellerController {
 
